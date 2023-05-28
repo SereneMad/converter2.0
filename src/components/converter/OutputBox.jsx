@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const OutputBox = ({ convertedValue }) => {
   // const convertedValue = (value / exchangeRate).toFixed(2);

@@ -9,23 +9,17 @@ import DescriptionBox from './components/converter/DescriptionBox';
 import './App.css';
 
 function App() {
-  const [exchangeRate, setExchangeRate] = useState(0.013);
-  const [value, setValue] = useState(5000);
-  const [convertedValue, setConvertedValue] = useState(0);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
-
-  // useEffect(() => {
-  //   fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-  //     .then((response) => response.json())
-  //     .then((data) => setExchangeRate(data.Valute.USD.Value));
-  // }, []);
+  const [value, setValue] = useState(5000);
+  const [exchangeRate, setExchangeRate] = useState(0.013);
+  const [convertedValue, setConvertedValue] = useState(0);
 
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
         const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
         const data = await response.json();
-        setExchangeRate(data.Valute.USD.Value);
+        setExchangeRate(1 / data.Valute.USD.Value);
       } catch (error) {
         console.error('Error fetching exchange rate:', error);
       }
@@ -37,7 +31,8 @@ function App() {
   const handleInputChange = (event) => {
     const newValue = parseInt(event.target.value);
     setValue(newValue);
-    setConvertedValue(newValue * exchangeRate);
+    const converted = value * exchangeRate;
+    setConvertedValue(converted);
   };
 
   const handleCurrencyChange = (event) => {
@@ -53,7 +48,7 @@ function App() {
         <Switcher selectedCurrency="RUB" />
         <InputBox
           value={value}
-          onChange={handleInputChange}
+          handleInputChange={handleInputChange}
           selectedCurrency={selectedCurrency}
           exchangeRate={exchangeRate}
         />
