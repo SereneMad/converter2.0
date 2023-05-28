@@ -1,38 +1,294 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Весь блок конвертера */
+.app {
   display: flex;
-  flex-direction: column;
+}
+
+.converter {
+  width: 405px;
+  display: inline-block;
+  vertical-align: top;
+  /* margin: 0 auto; */
+}
+
+.left {
+  /* float: left; */
+}
+
+.mid {
+  width: 110px;
+  padding-top: 145px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.calc__reverse {
+  width: 50px;
+  min-height: 50px;
+  background: url(img/transfer.svg) no-repeat 50%;
+  background-size: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.right {
+  /* float: right; */
+}
+
+/* Заголовок */
+.title {
+  font-size: 16px;
+  color: #777;
+  margin: 10px 0;
+}
+
+/* Переключатель валют */
+.switcher {
+  overflow: hidden;
+}
+
+.switcher__item:first-child {
+  border-left: 1px solid #cdcdcd;
+  border-radius: 4px 0 0 4px;
+}
+
+.switcher__item {
+  width: 85px;
+  height: 40px;
+  padding: 12px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
+  float: left;
+  text-align: center;
+  /* position: relative; */
+}
+
+.switcher__item:last-child {
+  width: 65px;
+  background: url(img/angle-arrow-down.svg) no-repeat 50%;
+  background-size: 12px;
+  color: transparent;
+  border-radius: 0 4px 4px 0;
+}
+
+.switcher__item:hover {
+  background-color: #77777737;
+}
+
+.switcher__item--selected {
+  color: #fff;
+  background-color: #16b67f;
+}
+
+.switcher__item--selected:hover {
+  color: #fff;
+  background-color: #1fc88d;
+}
+
+/* Окно ввода валюты */
+.input_box {
+  margin: 24px 0;
+  padding: 30px 20px 15px;
+  border: 1px solid #cdcdcd;
+}
+
+.input_box__input {
+  width: 100%;
+  height: 46px;
+  font-size: 44px;
+  margin-bottom: 30px;
+  outline: 0;
+  border: none;
+  font-family: GraphikCy-Semibold, 'Helvetica CY', Arial, sans-serif;
+  border-radius: 4px;
+}
+
+.input_box__rate {
+  width: 100%;
+  height: 14px;
+  text-transform: uppercase;
+  color: #777;
+}
+
+/* Блок выбора даты */
+.date {
+  position: relative;
+  float: left;
+}
+
+.date__input {
+  width: 185px;
+  height: 36px;
+  border: 1px solid #cdcdcd;
+  background: url(img/calendar.svg) no-repeat 94%;
+  background-size: 16px;
+  padding: 0 20px;
+  outline: 0;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 0;
+  cursor: pointer;
+  caret-color: #fff;
+}
+
+/* Блок селектора */
+.calc__select {
+  width: 185px;
+  height: 36px;
+  box-sizing: border-box;
+  border: 1px solid #cdcdcd;
+  cursor: pointer;
+  background-color: #fff;
+  float: right;
+  border-radius: 4px;
+  position: relative;
+}
+
+.calc__select select {
+  visibility: hidden;
+}
+
+select:not(:-internal-list-box) {
+  overflow: visible !important;
+}
+
+select {
+  display: none;
+  writing-mode: horizontal-tb !important;
+  /* font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-numeric: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-kerning: ;
+  font-feature-settings: ;
+  font-variation-settings: ; */
+  text-rendering: auto;
+  color: fieldtext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  /* appearance: auto; */
+  box-sizing: border-box;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  white-space: pre;
+  -webkit-rtl-ordering: logical;
+  background-color: field;
+  cursor: default;
+  margin: 0em;
+  border-width: 1px;
+  border-style: solid;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+  border-radius: 0px;
 }
 
-.App-link {
-  color: #61dafb;
+option {
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calc__select .custom_select {
+  width: 100%;
+  padding: 8px 16px 6px;
+  margin-top: 3px;
+}
+
+.custom_select {
+  width: 125px;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 6px 10px;
+}
+
+.custom_select__text {
+  display: inline-block;
+}
+
+.calc__select .custom_select__arrow {
+  background: url(img/angle-arrow-down.svg) no-repeat 50%;
+  background-size: 11px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.custom_select__arrow {
+  width: 16px;
+  height: 16px;
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  right: 0;
+}
+
+.calc__select .custom_select__options {
+  width: 185px;
+  height: 101px;
+  top: 33px;
+  left: -1px;
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.2);
+}
+
+.custom_select__options {
+  display: none;
+  width: 200px;
+  border: 1px solid #ededed;
+  position: absolute;
+  background: #fff;
+}
+
+.js-scrollable {
+  height: 100%;
+  overflow-y: scroll;
+  width: 220px;
+}
+
+.js-scrollable-content {
+  width: 185px;
+}
+
+.custom_select__option[selected] {
+  background: #16b67f;
+  color: #fff;
+}
+
+/* Описание */
+.calc__page_desc {
+  clear: both;
+  padding-top: 24px;
+  line-height: 1.2;
+  color: #777;
+}
+
+.calc__page_desc__p {
+  margin-bottom: 8px;
+}
+
+.showmore__btn {
+  color: #16b67f;
+  cursor: pointer;
 }
